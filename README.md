@@ -10,14 +10,14 @@ Requirements
 
 Installation
 ------------
-#
-#
+
+
 
 
 Configuration
 -------------
-#
-#
+
+
 
 
 Get API token (manual OAuth procedure)
