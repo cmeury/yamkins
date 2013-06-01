@@ -50,3 +50,11 @@ Create Yammer network for testing
 3. Verify e-mal address
 4. Complete registration process
 
+Run local Jenkins server for development
+----------------------------------------
+
+1. Install [vagrant](http://www.vagrantup.com)
+1. Clone the repository
+2. Change into the `jenkins/` directory
+3. Execute `vagrant up` (this will take quite a while)
+4. Point your browser to http://localhost:8080
