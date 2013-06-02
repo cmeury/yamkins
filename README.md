@@ -52,9 +52,10 @@ Create Yammer network for testing
 
 Run local Jenkins server for development
 ----------------------------------------
+Requires  s **Chef 10.16.4** or later.
 
 1. Install [vagrant](http://www.vagrantup.com)
-1. Clone the repository
-2. Change into the `jenkins/` directory
-3. Execute `vagrant up` (this will take quite a while)
-4. Point your browser to http://localhost:8080
+2. Clone the repository
+3. Change into the `jenkins/` directory
+4. Execute `vagrant up` (this will take quite a while)
+5. Point your browser to http://localhost:8080
