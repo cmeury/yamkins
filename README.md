@@ -35,8 +35,8 @@ Get API token (manual OAuth procedure)
 6. Log into Yammer with a user account that you like your Jenkins build notifications get posted with
 7. Fill in client\_id and any webpage here:
 		> https://www.yammer.com/dialog/oauth?client_id=[:client_id]&redirect_uri=[:redirect_uri]
-8.Click "Allow"
-9.You will be forwarded to an URL copy the code from it:
+8. Click "Allow"
+9. You will be forwarded to an URL copy the code from it:
 		> https://www.yammer.com/<URL>/?code=njNBNwmiJlYZheu917Dtw
 10. Use this code in this URL, the client ID and secret you already have from step 4.
 		> https://www.yammer.com/oauth2/access_token.json?client_id=[:client_id]&client_secret=[:client_secret]&code=[:code]
