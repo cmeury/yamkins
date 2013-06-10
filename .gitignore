@@ -1,5 +1,6 @@
 target/
 jenkins/.vagrant
+work/
 
 # IntelliJ IDEA project files
 .idea/
