@@ -1,2 +1,6 @@
 target/
 jenkins/.vagrant
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
