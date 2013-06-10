@@ -1,0 +1,8 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+  <f:section title="Yammer REST API Configuration">
+    <f:entry title="API Token" field="apiToken"
+      description="The long-lived API token to access Yammer's REST API.">
+      <f:textbox />
+    </f:entry>
+  </f:section>
+</j:jelly>
