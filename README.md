@@ -52,7 +52,7 @@ Create Yammer network for testing
 
 Run local Jenkins server for development
 ----------------------------------------
-Requires  s **Chef 10.16.4** or later.
+Ensure that you have VT-X enabled in your bio prior to booting a virtual 64-bit client.
 
 1. Install [vagrant](http://www.vagrantup.com)
 2. Clone the repository
