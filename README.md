@@ -50,6 +50,11 @@ Create Yammer network for testing
 3. Verify e-mal address
 4. Complete registration process
 
+Debugging the plugin with Intellij IDEA
+---------------------------------------
+As described at the [Jenkins website](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial#Plugintutorial-DebuggingaPlugin), create a new maven run configuration with the
+hpi:run goal and the following parameters in the Runner-VM Options: -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,suspend=n
+
 Run local Jenkins server for development
 ----------------------------------------
 Ensure that you have VT-X enabled in your bio prior to booting a virtual 64-bit client.
@@ -59,3 +64,4 @@ Ensure that you have VT-X enabled in your bio prior to booting a virtual 64-bit 
 3. Change into the `jenkins/` directory
 4. Execute `vagrant up` (this will take quite a while)
 5. Point your browser to http://localhost:8080
+
