@@ -59,3 +59,8 @@ As described at the [Jenkins website](https://wiki.jenkins-ci.org/display/JENKIN
 hpi:run goal and the following parameters in the Runner-VM Options:
 > -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,suspend=n
 Jenkins will then be available at http://localhost:8080/
+
+
+Ideas
+-----
+* Mapping Jennkins to users to Yammer user IDs to somehow CC users that started builds.
