@@ -3,16 +3,12 @@ package meury.com.yamkins;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Cedric
- * Date: 6/11/13
- * Time: 8:06 PM
- * To change this template use File | Settings | File Templates.
- *
+
  *
  * API calls are subject to rate limiting. Exceeding any rate limits will result in all endpoints returning a status code of 429 (Too Many Requests). Rate limits are per user per app. There are four rate limits:
 
@@ -50,16 +46,20 @@ public class YammerService {
         }
         Invocation.Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
         request.header("Authorization", bearerToken);
-        return request.post(Entity.entity("A string entity to be POSTed", MediaType.TEXT_PLAIN));
+        return request.post(null);   // no payload
+    }
+
+    public Response postMessage(String message, String groupId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("body", message);
+        map.put("group_id", groupId);
+        return post("messages.json", map);
     }
 
     public static void main(String args[]) {
         YammerService service = new YammerService("");
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("body", "Hello World!");
-        map.put("group_id", 1940994);
-        Response post = service.post("messages.json", map);
-        System.out.println(post.getStatus());
-        System.out.println(post.readEntity(String.class));
+        Response response = service.postMessage("Hello World! Time is " + new Date().toString(), "1940994");
+        System.out.println(response.getStatus());
+        System.out.println(response.readEntity(String.class));
     }
 }

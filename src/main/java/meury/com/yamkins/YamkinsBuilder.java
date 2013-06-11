@@ -15,6 +15,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 /**
@@ -26,11 +27,13 @@ import java.io.IOException;
 public class YamkinsBuilder extends Builder {
 
     private final String groupId;
+    private YammerService service;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
     public YamkinsBuilder(String groupId) {
         this.groupId = groupId;
+        this.service = new YammerService(getDescriptor().getApiToken());
     }
 
     /**
@@ -42,10 +45,17 @@ public class YamkinsBuilder extends Builder {
 
     @Override
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
-        String apiToken = getDescriptor().getApiToken();
-        listener.getLogger().println("Yammer API token: " + apiToken);
-        listener.getLogger().println("Yammer group ID: " + groupId);
-        return true;
+        String message = "Build " + build.getNumber() + " in progress";
+        Response response = service.postMessage(message, groupId);
+        int status = response.getStatus();
+        if(status == 201) {
+            listener.getLogger().println("Sent message to Yammer group ID " + groupId + ": " + message);
+            return true;
+        } else {
+            listener.getLogger().println("Unable to send message to Yammer group ID " + groupId + ", HTTP status code: " + status);
+            listener.getLogger().println(response.readEntity(String.class));
+            return false;
+        }
     }
 
     @Override
