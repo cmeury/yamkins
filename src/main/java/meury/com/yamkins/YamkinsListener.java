@@ -1,20 +1,17 @@
 package meury.com.yamkins;
 
 import hudson.Extension;
-import hudson.Launcher;
-import hudson.model.*;
+import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
+import hudson.model.Descriptor;
+import hudson.model.TaskListener;
 import hudson.model.listeners.RunListener;
 import hudson.tasks.Publisher;
 
-import javax.ws.rs.core.Response;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Cedric
- * Date: 6/12/13
- * Time: 8:33 PM
- * To change this template use File | Settings | File Templates.
+ * Set up a post build listener.
  */
 @Extension
 public class YamkinsListener extends RunListener<AbstractBuild> {
@@ -24,8 +21,6 @@ public class YamkinsListener extends RunListener<AbstractBuild> {
         getNotifier(r.getProject()).completed(r);
         super.onCompleted(r, listener);
     }
-
-
 
     @SuppressWarnings("unchecked")
     FineGrainedNotifier getNotifier(AbstractProject project) {

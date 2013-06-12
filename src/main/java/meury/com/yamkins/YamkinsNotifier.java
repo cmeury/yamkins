@@ -26,10 +26,29 @@ public class YamkinsNotifier extends Notifier {
 
     private final String groupId;
 
+    private boolean notifySuccess;
+    private boolean notifyUnstable;
+    private boolean notifyFailure;
+    private boolean notifyBackToNormal;
+    private boolean notifyAborted;
+    private boolean notifyNotBuilt;
+
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public YamkinsNotifier(String groupId) {
+    public YamkinsNotifier(String groupId,
+                           boolean notifyAborted,
+                           boolean notifyFailure,
+                           boolean notifyNotBuilt,
+                           boolean notifySuccess,
+                           boolean notifyUnstable,
+                           boolean notifyBackToNormal) {
         this.groupId = groupId;
+        this.notifyAborted = notifyAborted;
+        this.notifyFailure = notifyFailure;
+        this.notifyNotBuilt = notifyNotBuilt;
+        this.notifySuccess = notifySuccess;
+        this.notifyUnstable = notifyUnstable;
+        this.notifyBackToNormal = notifyBackToNormal;
     }
 
     @Override
@@ -44,8 +63,36 @@ public class YamkinsNotifier extends Notifier {
         return groupId;
     }
 
+    public boolean isNotifySuccess() {
+        return notifySuccess;
+    }
+
+    public boolean isNotifyUnstable() {
+        return notifyUnstable;
+    }
+
+    public boolean isNotifyFailure() {
+        return notifyFailure;
+    }
+
+    public boolean isNotifyBackToNormal() {
+        return notifyBackToNormal;
+    }
+
+    public boolean isNotifyAborted() {
+        return notifyAborted;
+    }
+
+    public boolean isNotifyNotBuilt() {
+        return notifyNotBuilt;
+    }
+
     public YammerService newYammerService() {
         return new YammerService(getDescriptor().getApiToken(), getGroupId());
+    }
+
+    public String getBuildServerUrl() {
+        return getDescriptor().getBuildServerUrl();
     }
 
     @Override
@@ -66,10 +113,10 @@ public class YamkinsNotifier extends Notifier {
     public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
         private String apiToken;
+        private String buildServerUrl;
 
         /**
          * Performs on-the-fly validation of the form field 'groupId'.
-         *
          * @param value What the user has typed.
          * @return Returns 'ok' when the passed group ID was numeric.
          */
@@ -86,7 +133,6 @@ public class YamkinsNotifier extends Notifier {
         /**
          * Indicates that this builder can be used with all kinds of project types
          * by always returning {@code true}.
-         *
          * @param aClass project type
          * @return always returns {@code true}
          */
@@ -105,19 +151,26 @@ public class YamkinsNotifier extends Notifier {
         @Override
         public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
             apiToken = formData.getString("apiToken");
+            buildServerUrl = formData.getString("buildServerUrl");
             save();
             return super.configure(req, formData);
         }
 
         /**
          * Returns the globally configured Yammer API token.
-         *
          * @return Yammer REST API token
          */
         public String getApiToken() {
             return apiToken;
         }
 
+        /**
+         * Returns the globally configured build server URL.
+         * @return Jenkins build server URL
+         */
+        public String getBuildServerUrl() {
+            return buildServerUrl;
+        }
     }
 
 }

@@ -1,24 +1,16 @@
 package meury.com.yamkins;
 
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
-
- *
- * API calls are subject to rate limiting. Exceeding any rate limits will result in all endpoints returning a status code of 429 (Too Many Requests). Rate limits are per user per app. There are four rate limits:
-
- Autocomplete: 10 requests in 10 seconds.
-
- Messages: 10 requests in 30 seconds.
-
- Notifications: 10 requests in 30 seconds.
-
- All Other Resources: 10 requests in 10 seconds.
+ * Posts messages to Yammer groups via REST calls.
  */
 public class YammerService {
 
@@ -40,6 +32,7 @@ public class YammerService {
      * Do a POST request to the Yammer API endpoint v1.
      * @param resource resource path (for example "users/current.json")
      * @param params map of query parameters
+     * @return response from the web request
      */
     public Response post(String resource, Map<String, Object> params) {
         Client client = ClientBuilder.newClient();
@@ -52,6 +45,11 @@ public class YammerService {
         return request.post(null);   // no payload
     }
 
+    /**
+     * Post a message to the group this service has been configured with.
+     * @param message plain text to post
+     * @return response from the web request
+     */
     public Response postMessage(String message) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("body", message);
@@ -59,10 +57,4 @@ public class YammerService {
         return post("messages.json", map);
     }
 
-    public static void main(String args[]) {
-        YammerService service = new YammerService("", "1940994");
-        Response response = service.postMessage("Hello World! Time is " + new Date().toString());
-        System.out.println(response.getStatus());
-        System.out.println(response.readEntity(String.class));
-    }
 }

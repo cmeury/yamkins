@@ -3,6 +3,10 @@
 Jenkins plugin that posts notifications to Yammer groups written in Java. Please note, this plugin is under development
 and is not yet working.
 
+The plugin draws ideas and code from the similar [jenkins-hipchat-plugin](https://github.com/jlewallen/jenkins-hipchat-plugin).
+
+*Beware:* The rate limit for messages is 10 requests in 30 seconds. Rate limits are not respected by this plugin. However, for small and medium sized Jenkins installations this should never become a problem.
+
 ## Requirements
 
 * A Yammer user account
@@ -11,8 +15,12 @@ and is not yet working.
 ## Installation
 
 
+
 ## Configuration
 
+- Acquire a long-lived access token as described further below.
+- Enter it in the global Jenkins configuration
+- Set up a post-build notification in your desired job and enter the group ID.
 
 ## License
 
@@ -59,8 +67,9 @@ Jenkins will then be available at http://localhost:8080/
 
 ## Known Issues
 
-* A NoSuchFileException is thrown under windows, this is due to bug [JENKINS-17681](bug: https://issues.jenkins-ci.org/browse/JENKINS-17681).
+- A NoSuchFileException is thrown under windows due to the known issue [JENKINS-17681](bug: https://issues.jenkins-ci.org/browse/JENKINS-17681).
 
 ## Ideas
 
-* Mapping Jennkins to users to Yammer user IDs to somehow CC users that started builds.
+- Mapping Jennkins to users to Yammer user IDs to somehow CC users that started builds.
+- Validate the access token on the click of a button.

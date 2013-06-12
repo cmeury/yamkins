@@ -2,4 +2,27 @@
   <f:entry title="Group ID" field="groupId">
     <f:textbox />
   </f:entry>
+  <f:section title="Notification Triggers">
+      <f:entry title="Successful Build" field="notifySuccess">
+          <f:checkbox checked="${it.notifySuccess}" default="true" />
+      </f:entry>
+      <f:entry title="Unstable Build" field="notifyUnstable">
+          <f:checkbox checked="${it.notifyUnstable}" default="true" />
+      </f:entry>
+      <f:entry title="Failure" field="notifyFailure">
+          <f:checkbox checked="${it.notifyFailure}" default="true" />
+      </f:entry>
+      <f:entry title="Back to Normal" field="notifyBackToNormal">
+          <f:checkbox checked="${it.notifyBackToNormal}" default="true" />
+      </f:entry>
+      <f:entry title="Build Start" field="startNotification">
+          <f:checkbox checked="${it.startNotification}" default="false" />
+      </f:entry>
+      <f:entry title="Build Aborted" field="notifyAborted">
+          <f:checkbox checked="${it.notifyAborted}" default="false" />
+      </f:entry>
+      <f:entry title="Not Built" field="notifyNotBuilt">
+          <f:checkbox checked="${it.notifyNotBuilt}" default="false" />
+      </f:entry>
+  </f:section>
 </j:jelly>
