@@ -3,7 +3,7 @@
 Jenkins plugin that posts notifications to Yammer groups written in Java. Please note, this plugin is under development
 and is not yet working.
 
-The plugin draws ideas and code from the similar [jenkins-hipchat-plugin](https://github.com/jlewallen/jenkins-hipchat-plugin).
+The plugin draws ideas and code from the similar [jenkins-hipchat-plugin](https://github.com/jlewallen/jenkins-hipchat-plugin). Thanks!
 
 *Beware:* The rate limit for messages is 10 requests in 30 seconds. Rate limits are not respected by this plugin. However, for small and medium sized Jenkins installations this should never become a problem.
 
@@ -41,12 +41,12 @@ The plugin is licensed using the [MIT License](http://opensource.org/licenses/MI
 5. Get the client token according to the steps on https://developer.yammer.com/authentication/ or listed here:
 6. Log into Yammer with a user account that you like your Jenkins build notifications get posted with
 7. Fill in client\_id and any webpage here:
-	* https://www.yammer.com/dialog/oauth?client_id=[:client_id]&redirect_uri=[:redirect_uri]
+        https://www.yammer.com/dialog/oauth?client_id=[:client_id]&redirect_uri=[:redirect_uri]
 8. Click "Allow"
 9. You will be forwarded to an URL copy the code from it:
-	* https://www.yammer.com/<URL>/?code=njNBNwmiJlYZheu917Dtw
+        https://www.yammer.com/<URL>/?code=njNBNwmiJlYZheu917Dtw
 10. Use this code in this URL, the client ID and secret you already have from step 4.
-	* https://www.yammer.com/oauth2/access_token.json?client_id=[:client_id]&client_secret=[:client_secret]&code=[:code]
+        https://www.yammer.com/oauth2/access_token.json?client_id=[:client_id]&client_secret=[:client_secret]&code=[:code]
 11. In the returned JSON, find access\_token.token property. This will be your single, long-lived API token to set-up in the Yamkins configuration.
 
 ## Create Yammer network for testing
@@ -62,7 +62,9 @@ The plugin is licensed using the [MIT License](http://opensource.org/licenses/MI
 
 As described at the [Jenkins website](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial#Plugintutorial-DebuggingaPlugin), create a new maven run configuration with the
 hpi:run goal and the following parameters in the Runner-VM Options:
+
 > -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,suspend=n
+
 Jenkins will then be available at http://localhost:8080/
 
 ## Known Issues
