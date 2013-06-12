@@ -37,6 +37,7 @@ public class YamkinsBuilder extends Builder {
     /**
      * Retrieve the Yammer group ID.
      */
+    @SuppressWarnings("UnusedDeclaration")
     public String getGroupId() {
         return groupId;
     }
@@ -77,6 +78,7 @@ public class YamkinsBuilder extends Builder {
          * @param value What the user has typed.
          * @return Returns 'ok' when the passed group ID was numeric.
          */
+        @SuppressWarnings("UnusedDeclaration")
         public FormValidation doCheckGroupId(@QueryParameter String value)
                 throws IOException, ServletException {
             if (value.length() == 0)
