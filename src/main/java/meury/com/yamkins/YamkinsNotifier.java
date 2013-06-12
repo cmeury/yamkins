@@ -2,12 +2,11 @@ package meury.com.yamkins;
 
 import hudson.Launcher;
 import hudson.Extension;
+import hudson.tasks.*;
 import hudson.util.FormValidation;
 import hudson.model.AbstractBuild;
 import hudson.model.BuildListener;
 import hudson.model.AbstractProject;
-import hudson.tasks.Builder;
-import hudson.tasks.BuildStepDescriptor;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -15,7 +14,6 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
-import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 /**
@@ -24,16 +22,20 @@ import java.io.IOException;
  * @author Cedric Meury
  * @author Kohsuke Kawaguchi
  */
-public class YamkinsBuilder extends Builder {
+public class YamkinsNotifier extends Notifier {
 
     private final String groupId;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public YamkinsBuilder(String groupId) {
+    public YamkinsNotifier(String groupId) {
         this.groupId = groupId;
     }
 
+    @Override
+    public DescriptorImpl getDescriptor() {
+        return (DescriptorImpl) super.getDescriptor();
+    }
     /**
      * Retrieve the Yammer group ID.
      */
@@ -42,33 +44,26 @@ public class YamkinsBuilder extends Builder {
         return groupId;
     }
 
-    @Override
-    public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
-        YammerService service = new YammerService(getDescriptor().getApiToken());
-        String message = "Build " + build.getNumber() + " in progress";
-        Response response = service.postMessage(message, groupId);
-        int status = response.getStatus();
-        if(status == 201) {
-            listener.getLogger().println("Sent message to Yammer group ID " + groupId + ": " + message);
-            return true;
-        } else {
-            listener.getLogger().println("Unable to send message to Yammer group ID " + groupId + ", HTTP status code: " + status);
-            listener.getLogger().println(response.readEntity(String.class));
-            return false;
-        }
+    public YammerService newYammerService() {
+        return new YammerService(getDescriptor().getApiToken(), getGroupId());
     }
 
     @Override
-    public DescriptorImpl getDescriptor() {
-        return (DescriptorImpl) super.getDescriptor();
+    public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
+        return true;
+    }
+
+    @Override
+    public BuildStepMonitor getRequiredMonitorService() {
+        return BuildStepMonitor.BUILD;
     }
 
     /**
-     * Descriptor for {@link YamkinsBuilder}. Used as a singleton.
+     * Descriptor for {@link YamkinsNotifier}. Used as a singleton.
      * The class is marked as public so that it can be accessed from views.
      */
     @Extension
-    public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
+    public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
         private String apiToken;
 

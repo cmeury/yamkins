@@ -24,13 +24,16 @@ public class YammerService {
 
     private static String BASE_URL = "https://www.yammer.com/api/v1";
     private String bearerToken;
+    private String groupId;
 
     /**
      * Create a new Yammer REST API service.
      * @param apiToken long lived authorization token
+     * @param groupId ID of the Yammer group
      */
-    public YammerService(String apiToken) {
+    public YammerService(String apiToken, String groupId) {
         this.bearerToken = "Bearer " + apiToken;
+        this.groupId = groupId;
     }
 
     /**
@@ -49,7 +52,7 @@ public class YammerService {
         return request.post(null);   // no payload
     }
 
-    public Response postMessage(String message, String groupId) {
+    public Response postMessage(String message) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("body", message);
         map.put("group_id", groupId);
@@ -57,8 +60,8 @@ public class YammerService {
     }
 
     public static void main(String args[]) {
-        YammerService service = new YammerService("");
-        Response response = service.postMessage("Hello World! Time is " + new Date().toString(), "1940994");
+        YammerService service = new YammerService("", "1940994");
+        Response response = service.postMessage("Hello World! Time is " + new Date().toString());
         System.out.println(response.getStatus());
         System.out.println(response.readEntity(String.class));
     }
