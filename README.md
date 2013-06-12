@@ -1,30 +1,26 @@
-yamkins
-=======
+# Yamkins
 
-Jenkins plugin that posts notifications to Yammer groups written in Java
+Jenkins plugin that posts notifications to Yammer groups written in Java. Please note, this plugin is under development
+and is not yet working.
 
-Requirements
-------------
+## Requirements
+
 * A Yammer user account
 * A Yammer group
 
-Installation
-------------
+## Installation
 
 
+## Configuration
 
 
-Configuration
--------------
+## License
 
-
-
-License
--------
 The plugin is licensed using the [MIT License](http://opensource.org/licenses/MIT). See the LICENSE file in the root directory.
 
-Get API token (manual OAuth procedure)
---------------------------------------
+# Yammer
+
+## Get API token (manual OAuth procedure)
 
 1. Go to [Yammer Client Applications](https://www.yammer.com/client_applications) to register your app
 2. Click on "Click here to register a new app"
@@ -45,22 +41,26 @@ Get API token (manual OAuth procedure)
 	* https://www.yammer.com/oauth2/access_token.json?client_id=[:client_id]&client_secret=[:client_secret]&code=[:code]
 11. In the returned JSON, find access\_token.token property. This will be your single, long-lived API token to set-up in the Yamkins configuration.
 
-Create Yammer network for testing
----------------------------------
+## Create Yammer network for testing
 
 1. Go to https://www.yammer.com/signup
 2. Enter an e-mail address of an existing network you may join or a new one (depends on the hostname)
 3. Verify e-mal address
 4. Complete registration process
 
-Debugging the plugin with Intellij IDEA
----------------------------------------
+# Development
+
+## Debugging the plugin with Intellij IDEA
+
 As described at the [Jenkins website](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial#Plugintutorial-DebuggingaPlugin), create a new maven run configuration with the
 hpi:run goal and the following parameters in the Runner-VM Options:
 > -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,suspend=n
 Jenkins will then be available at http://localhost:8080/
 
+## Known Issues
 
-Ideas
------
+* A NoSuchFileException is thrown under windows, this is due to bug [JENKINS-17681](bug: https://issues.jenkins-ci.org/browse/JENKINS-17681).
+
+## Ideas
+
 * Mapping Jennkins to users to Yammer user IDs to somehow CC users that started builds.

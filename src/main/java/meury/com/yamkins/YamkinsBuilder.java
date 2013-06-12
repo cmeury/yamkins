@@ -27,13 +27,11 @@ import java.io.IOException;
 public class YamkinsBuilder extends Builder {
 
     private final String groupId;
-    private YammerService service;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
     public YamkinsBuilder(String groupId) {
         this.groupId = groupId;
-        this.service = new YammerService(getDescriptor().getApiToken());
     }
 
     /**
@@ -45,6 +43,7 @@ public class YamkinsBuilder extends Builder {
 
     @Override
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
+        YammerService service = new YammerService(getDescriptor().getApiToken());
         String message = "Build " + build.getNumber() + " in progress";
         Response response = service.postMessage(message, groupId);
         int status = response.getStatus();
@@ -121,6 +120,8 @@ public class YamkinsBuilder extends Builder {
         public String getApiToken() {
             return apiToken;
         }
+
     }
+
 }
 
