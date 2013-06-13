@@ -58,6 +58,11 @@ The plugin is licensed using the [MIT License](http://opensource.org/licenses/MI
 
 # Development
 
+## Maven
+
+- It may be necessary to set up your settings.xml file according to the instructions on the [Jenkins website](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial#Plugintutorial-SettingUpEnvironment).
+- If you are using a local Maven repository that mirrors the Jenkins repo, please ensure the new URL is configured: http://repo.jenkins-ci.org/public/
+
 ## Debugging the plugin with Intellij IDEA
 
 As described at the [Jenkins website](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial#Plugintutorial-DebuggingaPlugin), create a new maven run configuration with the
