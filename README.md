@@ -1,7 +1,6 @@
 # Yamkins
 
-Jenkins plugin that posts notifications to Yammer groups written in Java. Please note, this plugin is under development
-and is not yet working.
+Jenkins plugin that posts notifications to Yammer groups written in Java.
 
 The plugin draws ideas and code from the similar [jenkins-hipchat-plugin](https://github.com/jlewallen/jenkins-hipchat-plugin). Thanks!
 
@@ -9,18 +8,18 @@ The plugin draws ideas and code from the similar [jenkins-hipchat-plugin](https:
 
 ## Requirements
 
-* A Yammer user account
-* A Yammer group
+* Yammer user account
+* Yammer group
+* Jenkins installation (1.509+)
+* Java (1.6+) / Maven (3.0.4+) build environment
 
 ## Installation
 
-
-
-## Configuration
-
-- Acquire a long-lived access token as described further below.
-- Enter it in the global Jenkins configuration
-- Set up a post-build notification in your desired job and enter the group ID.
+1. Do a 'mvn install'
+2. Install the target/yamkins.hpi in your Jenkins instance
+3. Acquire a long-lived API token as described below.
+4. Enter the API token in the global Jenkins configuration
+5. Set-up a post-build notification in an appropriate job
 
 ## License
 
