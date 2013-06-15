@@ -75,5 +75,5 @@ Jenkins will then be available at http://localhost:8080/
 ## Known Issues
 
 - A NoSuchFileException is thrown under windows due to the known issue [JENKINS-17681](bug: https://issues.jenkins-ci.org/browse/JENKINS-17681).
-
+- Adding a post-build notification seems to only works with recent versions of Jenkins. It was successfully tested with 1.509 and 1.515.
 
