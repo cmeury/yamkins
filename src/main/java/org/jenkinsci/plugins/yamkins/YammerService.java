@@ -1,4 +1,4 @@
-package meury.com.yamkins;
+package org.jenkinsci.plugins.yamkins;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
