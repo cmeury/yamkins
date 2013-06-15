@@ -76,7 +76,4 @@ Jenkins will then be available at http://localhost:8080/
 
 - A NoSuchFileException is thrown under windows due to the known issue [JENKINS-17681](bug: https://issues.jenkins-ci.org/browse/JENKINS-17681).
 
-## Ideas
 
-- Mapping Jennkins to users to Yammer user IDs to somehow CC users that started builds.
-- Validate the access token on the click of a button.

@@ -22,7 +22,7 @@ import java.io.IOException;
  * @author Cedric Meury
  * @author Kohsuke Kawaguchi
  */
-public class YamkinsNotifier extends Notifier {
+public class YamkinsPlugin extends Notifier {
 
     private final String groupId;
 
@@ -35,13 +35,13 @@ public class YamkinsNotifier extends Notifier {
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public YamkinsNotifier(String groupId,
-                           boolean notifyAborted,
-                           boolean notifyFailure,
-                           boolean notifyNotBuilt,
-                           boolean notifySuccess,
-                           boolean notifyUnstable,
-                           boolean notifyBackToNormal) {
+    public YamkinsPlugin(String groupId,
+                         boolean notifyAborted,
+                         boolean notifyFailure,
+                         boolean notifyNotBuilt,
+                         boolean notifySuccess,
+                         boolean notifyUnstable,
+                         boolean notifyBackToNormal) {
         this.groupId = groupId;
         this.notifyAborted = notifyAborted;
         this.notifyFailure = notifyFailure;
@@ -106,7 +106,7 @@ public class YamkinsNotifier extends Notifier {
     }
 
     /**
-     * Descriptor for {@link YamkinsNotifier}. Used as a singleton.
+     * Descriptor for {@link YamkinsPlugin}. Used as a singleton.
      * The class is marked as public so that it can be accessed from views.
      */
     @Extension
@@ -114,6 +114,10 @@ public class YamkinsNotifier extends Notifier {
 
         private String apiToken;
         private String buildServerUrl;
+
+        public DescriptorImpl() {
+            load();
+        }
 
         /**
          * Performs on-the-fly validation of the form field 'groupId'.

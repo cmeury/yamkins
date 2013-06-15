@@ -1,0 +1,27 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+
+    <f:section title="Yammer Notification Configuration">
+
+
+        <f:entry title       = "API Token"
+                 description = "The long-lived API token to access Yammer's REST API.">
+
+            <f:textbox field = "apiToken"
+                       value = "${descriptor.getApiToken()}"
+                        name = "apiToken" />
+        </f:entry>
+
+
+        <f:entry title        = "Jenkins Build Server URL"
+                 description  = "URL of this Jenkins instance including slash at the end."
+                 field        = "buildServerUrl">
+
+            <f:textbox value   = "${descriptor.getBuildServerUrl()}"
+                       default = "http://example.com/jenkins/"
+                       name    = "buildServerUrl" />
+
+        </f:entry>
+
+
+    </f:section>
+</j:jelly>

@@ -16,9 +16,9 @@ public class ActiveNotifier implements FineGrainedNotifier {
 
     private static final Logger logger = Logger.getLogger(ActiveNotifier.class.getName());
 
-    private YamkinsNotifier notifier;
+    private YamkinsPlugin notifier;
 
-    public ActiveNotifier(YamkinsNotifier notifier) {
+    public ActiveNotifier(YamkinsPlugin notifier) {
         super();
         this.notifier = notifier;
     }
@@ -72,10 +72,10 @@ public class ActiveNotifier implements FineGrainedNotifier {
 
     public static class MessageBuilder {
         private StringBuffer message;
-        private YamkinsNotifier notifier;
+        private YamkinsPlugin notifier;
         private AbstractBuild build;
 
-        public MessageBuilder(YamkinsNotifier notifier, AbstractBuild build) {
+        public MessageBuilder(YamkinsPlugin notifier, AbstractBuild build) {
             this.notifier = notifier;
             this.message = new StringBuffer();
             this.build = build;
@@ -110,7 +110,7 @@ public class ActiveNotifier implements FineGrainedNotifier {
 
         public MessageBuilder appendOpenLink() {
             String url = notifier.getBuildServerUrl() + build.getUrl();
-            message.append(" Link: ").append(url);
+            message.append(" - ").append(url);
             return this;
         }
 

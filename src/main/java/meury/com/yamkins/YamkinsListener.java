@@ -26,8 +26,8 @@ public class YamkinsListener extends RunListener<AbstractBuild> {
     FineGrainedNotifier getNotifier(AbstractProject project) {
         Map<Descriptor<Publisher>, Publisher> map = project.getPublishersList().toMap();
         for (Publisher publisher : map.values()) {
-            if (publisher instanceof YamkinsNotifier) {
-                return new ActiveNotifier((YamkinsNotifier) publisher);
+            if (publisher instanceof YamkinsPlugin) {
+                return new ActiveNotifier((YamkinsPlugin) publisher);
             }
         }
         return new DisabledNotifier();
