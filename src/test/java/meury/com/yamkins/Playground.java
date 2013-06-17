@@ -1,4 +1,4 @@
-package meury.com.yamkins;
+package org.jenkinsci.plugins.yamkins;
 
 import javax.ws.rs.core.Response;
 import java.util.Date;
