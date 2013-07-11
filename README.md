@@ -1,6 +1,6 @@
 # Yamkins
 
-Jenkins plugin that posts notifications to Yammer groups written in Java.
+Jenkins plugin that posts notifications to Yammer groups written in Java. It is currently not registered as an official Jenkins plugin, but I'll try to do that when I have some free time.
 
 The plugin draws ideas and code from the similar [jenkins-hipchat-plugin](https://github.com/jlewallen/jenkins-hipchat-plugin). Thanks!
 
