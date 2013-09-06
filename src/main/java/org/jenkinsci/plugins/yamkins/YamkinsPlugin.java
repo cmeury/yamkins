@@ -114,6 +114,9 @@ public class YamkinsPlugin extends Notifier {
 
         private String apiToken;
         private String buildServerUrl;
+        private Boolean useOpenGraphMessageFormat;
+        private Boolean attachOpenGraphImage;
+
 
         public DescriptorImpl() {
             load();
@@ -156,6 +159,11 @@ public class YamkinsPlugin extends Notifier {
         public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
             apiToken = formData.getString("apiToken");
             buildServerUrl = formData.getString("buildServerUrl");
+            useOpenGraphMessageFormat = formData.getBoolean("useOpenGraphMessageFormat");
+
+            if(formData.has("attachOpenGraphImage"))
+              attachOpenGraphImage = formData.getBoolean("attachOpenGraphImage");
+
             save();
             return super.configure(req, formData);
         }
@@ -174,6 +182,22 @@ public class YamkinsPlugin extends Notifier {
          */
         public String getBuildServerUrl() {
             return buildServerUrl;
+        }
+
+        /**
+         * Returns the globally configured MessageFormat
+         * @return  false = plaintext, true = OpenGraph format
+         */
+        public Boolean useOpenGraphMessageFormat() {
+            return useOpenGraphMessageFormat;
+        }
+
+        /**
+         * image will be attached to the opengraph message if true
+         * @return true / false
+         */
+        public Boolean getAttachOpenGraphImage() {
+            return attachOpenGraphImage;
         }
     }
 
