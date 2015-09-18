@@ -13,10 +13,36 @@
         <f:entry   title       = "Jenkins Build Server URL"
                    description = "URL of this Jenkins instance including slash at the end."
                    field       = "buildServerUrl">
-        <f:textbox value       = "${descriptor.getBuildServerUrl()}"
-                   default     = "http://example.com/jenkins/"
-                   name        = "buildServerUrl" />
+            <f:textbox value       = "${descriptor.getBuildServerUrl()}"
+                       default     = "http://example.com/jenkins/"
+                       name        = "buildServerUrl" />
         </f:entry>
+
+       <f:entry title       = "Post as OpenGraph Object"
+                description = "submits Notifications in OpenGraph format"
+                field       = "useOpenGraphMessageFormat">
+
+         <f:checkbox checked = "${descriptor.useOpenGraphMessageFormat()}"
+                     default = "false"
+                     name    = "useOpenGraphMessageFormat"/>
+       </f:entry>
+
+        <!--
+        <f:optionalBlock checked = "${descriptor.useOpenGraphMessageFormat()}"
+                         title    = "OpenGraph Options"
+                         field   = "optionalImageBlock">
+        -->
+               <f:entry title    = "use Image highlighting"
+                       description = "attach Images to the message to highlight the result of the build"
+                       field       = "attachOpenGraphImage">
+
+                <f:checkbox checked = "${descriptor.attachOpenGraphImage()}"
+                            default = "false"
+                            name    ="attachOpenGraphImage"/>
+               </f:entry>
+        <!--
+        </f:optionalBlock>
+        -->
 
     </f:section>
 </j:jelly>

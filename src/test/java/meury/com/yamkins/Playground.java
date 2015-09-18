@@ -1,5 +1,7 @@
 package meury.com.yamkins;
 
+import org.jenkinsci.plugins.yamkins.YammerService;
+
 import javax.ws.rs.core.Response;
 import java.util.Date;
 
